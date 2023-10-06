@@ -137,7 +137,7 @@ test_db isimli bir database oluşturmak ve bu database'de bir tablo tanımlamak 
 
 - SQL'de, DROP komutu veritabanı veya tablolarda mevcut olan tablo, index, view, procedure, trigger, sequence, synonym, domain, role, constraint gibi veritabanı objelerini silmek için kullanılır.
 
-ALTER KUllanım Örnekleri:
+ALTER Kullanım Örnekleri:
 
     ALTER TABLE calisanlar ADD COLUMN cinsiyet VARCHAR(10) ---calisanlar tablosuna cinsiyet isimli kolon ekler.
     ALTER TABLE calisanlar DROP COLUMN cinsiyet ---calisanlar tablosundan cinsiyet isimli kolonu siler. 
@@ -341,19 +341,11 @@ Trim (Trailing from string) —> Sondan
 
 Trim (Both from string) —> Her iki taraftan
 
-SELECT
-			TRIM (
-						LEADING
-FROM
-						'  PostgreSQL TRIM'
-						),
-			TRIM (
-						TRAILING
-FROM
-						'PostgreSQL TRIM   '
-						),
-			TRIM (
-						'  PostgreSQL TRIM  ');
+	SELECT TRIM (LEADING
+	FROM '  PostgreSQL TRIM'),
+	TRIM (TRAILING
+	FROM 'PostgreSQL TRIM   '),
+	TRIM ('  PostgreSQL TRIM  ');
 
   ![Untitled](https://github.com/SinanKosoglu/SinanKosoglu/assets/140150167/2076a4a8-4af3-42c3-9297-6b7155037d27)
 
@@ -544,6 +536,242 @@ DESC: büyükten küçüğe
 
 - Yukarıdaki sorguda müşteri sayısı 5'ten fazla olan ülkeler azalan şekilde sıralanır. COUNT(CostumerID) Where koşuluyla birlikte kullanılmaz. Bunun yerine GROUP BY HAVING ifadesi kullanılır.
 - HAVING, group by komutundan sonra kullanılır. WHERE, group by komutundan önce kullanılır.
+
+**-WHERE Komutu ve Karşılaştırma Operatörleri**
+
+- WHERE komutu sorgulama işlemi sırasında belirli koşullara göre verileri filtrelemeye yarar.
+
+
+SELECT * FROM tablo_adi WHERE sartlar
+
+
+**-Eşittir Operatörü (=)**
+
+SQL'de WHERE komutu içinde kullanılan "=" (eşittir) operatörü, belirli bir kriterde eşit olan verileri seçmek için kullanılır. Örneğin, "employees" tablosundaki "last_name" sütununda "Smith" değerini içeren kayıtları seçmek için aşağıdaki sorguyu kullanabilirsiniz:
+
+SELECT * FROM employees WHERE age = 25;
+
+SELECT * FROM employees WHERE first_name = 'Nancy'
+SELECT * FROM employees WHERE employee_id = 105
+
+**Eşit Değildir Operatörü (<> ya da !=)**
+
+SQL'de WHERE komutu içinde kullanılan "<>" (eşit değildir) operatörü, belirli bir kriterde eşit olmayan verileri seçmek için kullanılır. Örneğin, "employees" tablosundaki "last_name" sütununda "Smith" değerini içermeyen kayıtları seçmek için aşağıdaki sorguyu kullanabilirsiniz:
+
+SELECT * FROM employees WHERE employee_id != 105
+
+Bu sorgu "employees" tablosundaki tüm kayıtları seçer ve sadece "last_name" sütununda "Smith" değerini içermeyen kayıtları gösterir.
+
+Aynı şekilde "age" sütununda 25 değerini içermeyen kayıtları seçmek için:
+
+SELECT * FROM employees WHERE age <> 25;
+
+SELECT * FROM employees WHERE last_name <> 'Smith';
+SELECT * FROM employees WHERE employee_id <> 105
+
+Bu sorgu "employees" tablosundaki tüm kayıtları seçer ve sadece "age" sütununda 25 değerini içermeyen kayıtları gösterir.
+
+**Büyüktür Operatörü (>)**
+
+SQL'de WHERE komutu içinde kullanılan ">" (büyüktür) operatörü, belirli bir kriterde büyük olan verileri seçmek için kullanılır. Örneğin, "employees" tablosundaki "age" sütununda 25 değerinden büyük olan kayıtları seçmek için aşağıdaki sorguyu kullanabilirsiniz:
+
+```sql
+SELECT * FROM employees WHERE age > 25;
+```
+
+Bu sorgu "employees" tablosundaki tüm kayıtları seçer ve sadece "age" sütununda 25 değerinden büyük olan kayıtları gösterir.
+
+```sql
+SELECT first_name, last_name FROM employees WHERE job_id > 6 
+```
+
+Aynı şekilde "salary" sütununda 50000 değerinden büyük olan kayıtları seçmek için:
+
+```sql
+SELECT * FROM employees WHERE salary > 50000;
+```
+
+Bu sorgu "employees" tablosundaki tüm kayıtları seçer ve sadece "salary" sütununda 50000 değerinden büyük olan kayıtları gösterir.
+
+## Büyük ya da Eşittir Operatörü (>=)
+
+```sql
+SELECT * FROM employees WHERE hire_date >= '1997-01-01'
+```
+
+## **Küçüktür Operatörü (<)**
+
+SQL'de WHERE komutu içinde kullanılan "<" (küçüktür) operatörü, belirli bir kriterde küçük olan verileri seçmek için kullanılır. Örneğin, "employees" tablosundaki "age" sütununda 25 değerinden küçük olan kayıtları seçmek için aşağıdaki sorguyu kullanabilirsiniz:
+
+```sql
+SELECT * FROM employees WHERE age < 25;
+```
+
+Bu sorgu "employees" tablosundaki tüm kayıtları seçer ve sadece "age" sütununda 25 değerinden küçük olan kayıtları gösterir.
+
+Aynı şekilde "salary" sütununda 50000 değerinden küçük olan kayıtları seçmek için:
+
+```sql
+SELECT * FROM employees WHERE salary < 50000;
+```
+
+Bu sorgu "employees" tablosundaki tüm kayıtları seçer ve sadece "salary" sütununda 50000 değerinden küçük olan kayıtları gösterir.
+
+## **Küçük ya da Eşittir Operatörü (<=)**
+
+SQL'de WHERE komutu içinde kullanılan "<=" (küçük ya da eşittir) operatörü, belirli bir kriterde küçük veya eşit olan verileri seçmek için kullanılır. Örneğin, "employees" tablosundaki "age" sütununda 25 değerinden küçük ya da eşit olan kayıtları seçmek için aşağıdaki sorguyu kullanabilirsiniz:
+
+```sql
+SELECT * FROM employees WHERE age <= 25;
+```
+
+Bu sorgu "employees" tablosundaki tüm kayıtları seçer ve sadece "age" sütununda 25 değerinden küçük ya da eşit olan kayıtları gösterir.
+
+Aynı şekilde "salary" sütununda 50000 değerinden küçük ya da eşit olan kayıtları seçmek için:
+
+```sql
+SELECT * FROM employees WHERE salary <= 50000;
+```
+
+Bu sorgu "employees" tablosundaki tüm kayıtları seçer ve sadece "salary" sütununda 50000 değerinden küçük olan kayıtları gösterir.
+
+## **IS NULL Operatörü (IS NULL)**
+
+SQL'de WHERE komutu içinde kullanılan "IS NULL" operatörü, belirli bir sütunda NULL değerinin olup olmadığını kontrol etmek için kullanılır. Örneğin, "employees" tablosundaki "phone" sütununda NULL değerinin olup olmadığını kontrol etmek için aşağıdaki sorguyu kullanabilirsiniz:
+
+```sql
+SELECT * FROM employees WHERE phone IS NULL;
+```
+
+Bu sorgu "employees" tablosundaki tüm kayıtları seçer ve sadece "phone" sütununda NULL değeri olan kayıtları gösterir.
+
+Aynı şekilde "email" sütununda NULL değerinin olup olmadığını kontrol etmek için:
+
+```sql
+SELECT * FROM employees WHERE email IS NULL;
+```
+
+Bu sorgu "employees" tablosundaki tüm kayıtları seçer ve sadece "email" sütununda NULL değeri olan kayıtları gösterir.
+
+## **AND (VE) Operatörü**
+
+SQL'de WHERE komutu içinde kullanılan "AND" operatörü, birden fazla kriterin aynı anda gerçekleşmesini sağlamak için kullanılır. Örneğin, "employees" tablosundaki "age" sütununda 25 değerinden küçük ve "salary" sütununda 50000 değerinden büyük olan kayıtları seçmek için aşağıdaki sorguyu kullanabilirsiniz:
+
+```sql
+SELECT * FROM employees WHERE age < 25 AND salary > 50000;
+```
+
+Bu sorgu "employees" tablosundaki tüm kayıtları seçer ve sadece "age" sütununda 25 değerinden küçük ve "salary" sütununda 50000 değerinden büyük olan kayıtları gösterir.
+
+Aynı şekilde "employees" tablosundaki "gender" sütununda 'Female' ve "phone" sütununda NULL değerinin olup olmadığını kontrol etmek için:
+
+```sql
+SELECT * FROM employees WHERE gender = 'Female' AND phone IS NULL;
+```
+
+Bu sorgu "employees" tablosundaki tüm kayıtları seçer ve sadece "gender" sütununda 'Female' ve "phone" sütununda NULL değeri olan kayıtları gösterir.
+
+## **OR (VEYA) Operatörü**
+
+SQL'de WHERE komutu içinde kullanılan "OR" operatörü, birden fazla kriterin en az birinin gerçekleşmesini sağlamak için kullanılır. Örneğin, "employees" tablosundaki "age" sütununda 25 değerinden küçük veya "salary" sütununda 50000 değerinden büyük olan kayıtları seçmek için aşağıdaki sorguyu kullanabilirsiniz:
+
+```sql
+SELECT * FROM employees WHERE age < 25 OR salary > 50000;
+```
+
+Bu sorgu "employees" tablosundaki tüm kayıtları seçer ve sadece "age" sütununda 25 değerinden küçük veya "salary" sütununda 50000 değerinden büyük olan kayıtları gösterir.
+
+Aynı şekilde "employees" tablosundaki "gender" sütununda 'Female' veya "phone" sütununda NULL değerinin olup olmadığını kontrol etmek için:
+
+```sql
+SELECT * FROM employees WHERE gender = 'Female' OR phone IS NULL;
+```
+
+Bu sorgu "employees" tablosundaki tüm kayıtları seçer ve sadece "gender" sütununda 'Female' veya "phone" sütununda NULL olan kayıtları gösterir.
+
+## **IN (İÇİNDE) Operatörü**
+
+SQL'de WHERE komutu içinde kullanılan "IN" operatörü, belirli değerler için arama yapmak için kullanılır. Örneğin, "employees" tablosundaki "age" sütununda 25, 30 ve 35 değerlerinden birinin olup olmadığını kontrol etmek için aşağıdaki sorguyu kullanabilirsiniz:
+
+```sql
+SELECT * FROM employees WHERE age IN (25, 30, 35);
+```
+
+Bu sorgu "employees" tablosundaki tüm kayıtları seçer ve sadece "age" sütununda 25, 30 veya 35 değerlerinden birinin olan kayıtları gösterir.
+
+Aynı şekilde "employees" tablosundaki "gender" sütununda 'Female' veya "Male" değerlerinin olup olmadığını kontrol etmek için:
+
+```sql
+SELECT * FROM employees WHERE gender IN ('Female', 'Male');
+```
+
+Bu sorgu "employees" tablosundaki tüm kayıtları seçer ve sadece "gender" sütununda 'Female' veya 'Male' değerlerinden birinin olan kayıtları gösterir.
+
+## **BETWEEN (ARASINDA) Operatörü**
+
+SQL'de WHERE komutu içinde kullanılan "BETWEEN" operatörü, belirli bir değer aralığı içinde arama yapmak için kullanılır. Örneğin, "employees" tablosundaki "age" sütununda 25 ve 35 arasındaki değerlerin olup olmadığını kontrol etmek için aşağıdaki sorguyu kullanabilirsiniz:
+
+```sql
+SELECT * FROM employees WHERE age BETWEEN 25 AND 35;
+```
+
+Bu sorgu "employees" tablosundaki tüm kayıtları seçer ve sadece "age" sütununda 25 ve 35 arasındaki değerlerden birinin olan kayıtları gösterir.
+
+Aynı şekilde "employees" tablosundaki "salary" sütununda 40000 ile 60000 arasındaki değerlerin olup olmadığını kontrol etmek için:
+
+```sql
+SELECT * FROM employees WHERE salary BETWEEN 40000 AND 60000;
+```
+
+Bu sorgu "employees" tablosundaki tüm kayıtları seçer ve sadece "salary" sütununda 40000 ile 60000 arasındaki değerlerden birinin olan kayıtları gösterir.
+
+## **LIKE (BENZER) Operatörü**
+
+SQL'de WHERE komutu içinde kullanılan "LIKE" operatörü, belirli bir kalıp içinde arama yapmak için kullanılır. Örneğin, "employees" tablosundaki "name" sütununda "J%" harfleri ile başlayan isimlerin olup olmadığını kontrol etmek için aşağıdaki sorguyu kullanabilirsiniz.
+
+```sql
+SELECT * FROM employees WHERE name LIKE 'J%';
+```
+
+Bu sorgu "employees" tablosundaki tüm kayıtları seçer ve sadece "name" sütununda "J%" harfleri ile başlayan isimlerin olan kayıtları gösterir.
+
+Aynı şekilde "employees" tablosundaki "email" sütununda "@gmail.com" ile biten değerlerin olup olmadığını kontrol etmek için:
+
+```sql
+SELECT * FROM employees WHERE email LIKE '%@gmail.com';
+```
+
+Bu sorgu "employees" tablosundaki tüm kayıtları seçer ve sadece "email" sütununda "@gmail.com" ile biten değerlerin olan kayıtları gösterir.
+
+"_" kullanarak herhangi bir karakteri temsil edebilirsiniz. Örnek olarak "employees" tablosundaki "name" sütununda "J_n" harfleri ile başlayan isimlerin olup olmadığını kontrol etmek için:
+
+```sql
+SELECT * FROM employees WHERE name LIKE 'J_n';
+```
+
+Bu sorgu "employees" tablosundaki tüm kayıtları seçer ve sadece "name" sütununda "J_n" harfleri ile başlayan isimlerin olan kayıtları gösterir.
+
+## **NOT (DEĞİL) Operatörü**
+
+SQL'de NOT operatörü, bir koşulun tersini ifade eder.
+
+Örneğin "employees" tablosundaki "age" sütununda 18 veya 60'dan küçük olan değerlerin olup olmadığını kontrol etmek için:
+
+```sql
+SELECT * FROM employees WHERE NOT (age < 18 OR age > 60);
+```
+
+Bu sorgu "employees" tablosundaki tüm kayıtları seçer ve sadece "age" sütununda 18 veya 60'dan küçük değerlerin olmayan kayıtları gösterir.
+
+NOT operatörü genellikle NOT NULL, NOT IN, NOT BETWEEN gibi koşullar için kullanılabilir.
+
+Örnek olarak "employees" tablosundaki "phone" sütununda NULL değerlerinin olmadığını kontrol etmek için:
+
+```sql
+SELECT * FROM employees WHERE NOT phone IS NULL;
+```
+
+Bu sorgu "employees" tablosundaki tüm kayıtları seçer ve sadece "phone" sütununda NULL  olmayan kayıtları gösterir.
 
 *-WHERE Komutu ve LIKE Operatörü*
 
