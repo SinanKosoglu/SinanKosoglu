@@ -68,3 +68,5 @@ Veri tabanındaki tablolar arasında ilişki kurulur.
 Veri güvenliği sağlanır.
 Veri kalitesi sağlanır.
 Veri normalizasyonu sağlanır.
+![266414340-b30f0bd5-18cf-480a-b9d4-0d4f2cc6c7fc](https://github.com/SinanKosoglu/SinanKosoglu/assets/140150167/baa0feb4-c1a2-42f2-8618-d19d6aa4350f)
+
