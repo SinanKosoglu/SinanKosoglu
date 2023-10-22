@@ -38,6 +38,7 @@ hassasiyet ve doğruluğu ön planda tutan uygulamalar için idealdir. Finansal 
 -_DOUBLE PRECISION_:Ondalıklı sayıları daha yüksek bir hassasiyette saklar. Bu veri tipi, daha büyük sayıları ve daha yüksek hassasiyeti gerektiren uygulamalar için idealdir. 
 Bir fiziksel ölçüm için DOUBLE PRECISION kullanabilirsiniz.
 
+![image](https://github.com/SinanKosoglu/SinanKosoglu/assets/140150167/8c4cb3fb-d636-4a6e-9a61-4926641073dc)
 
 **BOOLEAN Veri Tipi**
 
