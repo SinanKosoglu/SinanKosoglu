@@ -1,6 +1,6 @@
 👋 Hi, I’m @SinanKösoğlu
 
-👀 I’m interested in Data Analytics, SQL queries for data analytics, Power BI, Pyhton codings for data analytics 
+👀 I’m interested in Data Analytics, SQL queries for data analytics, Power BI, Python codings for data analytics 
 
 🌱 I’m currently learning data modeling, a/b testing, power bi visualization story telling and insights.  
 
