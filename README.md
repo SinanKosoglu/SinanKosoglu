@@ -1,4 +1,4 @@
-👋 Hi, I’m @SinanKösoğlu
+👋 Hi, I’m Sinan Kösoğlu
 
 👀 I’m interested in Data Analytics, SQL queries for data analytics, Power BI, Python codings for data analytics 
 
