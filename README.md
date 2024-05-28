@@ -4,4 +4,7 @@
 
 🌱 Some of my work samples of data modeling, crispDM, RFM and power bi visualization story tellings and insights.  
 
-📫 How to reach me Linkedin profile => https://www.linkedin.com/in/sinan-kosoglu-42ab9838/
+📫 My Linkedin profile => www.linkedin.com/in/sinankosoglu
+
+
+
